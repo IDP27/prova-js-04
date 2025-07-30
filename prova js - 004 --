@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <script>
+        let tarefas = [];
+
+while (true) {
+  let opcao = prompt(
+    "Escolha uma opção:\n1 - Adicionar tarefa\n2 - Listar tarefas\n3 - Remover tarefa\n4 - Concluir tarefa\n5 - Sair"
+  );
+
+  if (opcao === "5") {
+    alert("Programa encerrado. Até logo!");
+    break;
+  }
+
+  switch (opcao) {
+    case "1":
+      let novaTarefa = prompt("Digite o nome da tarefa:");
+      if (novaTarefa.trim() !== "") {
+        tarefas.push(novaTarefa.trim());
+        alert(`Tarefa adicionada: '${novaTarefa}'`);
+      }
+      break;
+
+    case "2":
+      if (tarefas.length === 0) {
+        alert("Nenhuma tarefa cadastrada.");
+        break;
+      }
+      let lista = "Lista de Tarefas:\n";
+      for (let i = 0; i < tarefas.length; i++) {
+        lista += `${i}: ${tarefas[i]}\n`;
+      }
+      alert(lista);
+      break;
+
+    case "3":
+      let indiceRemover = prompt(`Digite o índice da tarefa a ser removida (0 a ${tarefas.length - 1}):`);
+      if (!isNaN(indiceRemover) && tarefas[indiceRemover]) {
+        let removida = tarefas.splice(Number(indiceRemover), 1);
+        alert(`Tarefa removida: '${removida}'`);
+      } else {
+        alert("Índice inválido.");
+      }
+      break;
+
+    case "4":
+      let indiceConcluir = prompt(`Digite o índice da tarefa a ser concluída (0 a ${tarefas.length - 1}):`);
+      if (!isNaN(indiceConcluir) && tarefas[indiceConcluir]) {
+        tarefas[indiceConcluir] = " V " + tarefas[indiceConcluir];
+        alert(`Tarefa marcada como concluída: '${tarefas[indiceConcluir]}'`);
+      } else {
+        alert("Índice inválido.");
+      }
+      break;
+
+    default:
+      alert("Opção inválida. Escolha entre 1 e 5.");
+  }
+}
+
+
+    </script>
+    
+</body>
+</html>
